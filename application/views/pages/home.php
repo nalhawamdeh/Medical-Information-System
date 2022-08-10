@@ -1,8 +1,6 @@
-<h2 class="text-primary"> <?= $title?> </h2>
+<h2 class="text-primary page-title"> <?= $title?> </h2>
 
-<h3> Welcome to the Medical Information System </h3>
-
-<p> 
+<p class="p-pages">
 Since the beginning of 2020, 215 countries and territories around the globe have reported many cases of the coronavirus COVID-19. 
 Since this virus is highly contagious, many different demographics are at risk of testing positive if they do not abide by basic 
 rules and procedures to reduce the risk of infection. One of the most emphasized rules is social distancing, which is 
