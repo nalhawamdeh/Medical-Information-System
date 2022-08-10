@@ -1,0 +1,13 @@
+.appointment-div {
+    background-color: #f1f1f1e1;
+    padding-left: 20;
+    padding-top: 20;
+    padding-bottom: 20;
+    padding-right: 20;
+}
+
+.hr-dark {
+    border: none;
+    height: 1px;
+    background-color: rgb(102, 102, 102);
+}
