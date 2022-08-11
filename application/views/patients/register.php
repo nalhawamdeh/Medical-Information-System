@@ -1,7 +1,7 @@
 <h2 class="text-primary page-title"> <?= $title;?> </h2>
 <?php echo validation_errors();?>
 
-<!--submit to users/register function-->
+<!--submit to patients/register function-->
 <?php echo form_open('patients/register');?>
     <div class="form-group">
         <label>Patient ID</label>
