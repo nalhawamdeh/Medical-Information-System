@@ -6,5 +6,13 @@
         <p> Patient Surname: <?php echo $appointment['patient_surname'];?> </p>
         <p> Doctor ID: <?php echo $appointment['doctor_id'];?> </p>
         <p> Doctor Surname: Dr. <?php echo $appointment['doctor_surname'];?> </p>
-        <br>
+
+        <hr class="hr-dark" >
+
+        <a class="btn btn-info pull-left" href="edit/<?php echo $appointment['slug'];?>">Edit</a>
+
+        <?php echo form_open('appointments/delete/'.$appointment['appointment_id']);?>
+            <input type="submit" value="Delete" class="btn btn-danger">
+        
 </div>
+
