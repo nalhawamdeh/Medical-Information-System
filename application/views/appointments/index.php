@@ -1,4 +1,4 @@
-<h2 class="text-primary"> <?= $title?> </h2>
+<h2 class="text-primary page-title"> <?= $title?> </h2>
 <br>
 <?php foreach($appointments as $appointment) :?>
     <div class="appointment-div">

@@ -1,3 +1,4 @@
+<h2 class="text-primary page-title"> <?= $title?> </h2>
 <?php echo validation_errors(); ?>
 <?php echo form_open('appointments/update'); ?>
     <input type="hidden" name="appointment_id" value="<?php echo $appointment['appointment_id'];?>">
