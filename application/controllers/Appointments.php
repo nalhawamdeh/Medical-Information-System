@@ -53,7 +53,7 @@
         public function delete($appointment_id) {
             #call function from model
             $this -> appointment_model -> delete($appointment_id);
-            redirect('appointments/details');
+            redirect('appointments');
         }
 
         public function edit($slug) {
