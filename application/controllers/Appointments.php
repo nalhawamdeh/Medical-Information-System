@@ -49,4 +49,30 @@
                 redirect('appointments');
             }
         }
+
+        public function delete($appointment_id) {
+            #call function from model
+            $this -> appointment_model -> delete($appointment_id);
+            redirect('appointments/details');
+        }
+
+        public function edit($slug) {
+            $data['appointment'] = $this -> appointment_model -> get_appointments($slug);
+
+            if(empty($data['appointment'])){
+                show_404();
+            }
+
+            $data['title'] = 'Edit Appointment';
+
+            $this -> load -> view('templates/header');
+            $this -> load -> view('appointments/edit', $data);
+            $this -> load -> view('templates/footer');
+            
+        }
+
+        public function update() {
+            $this -> appointment_model -> update();
+            redirect('appointments');
+        }
     }
