@@ -39,9 +39,17 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
+          <li><a href="<?php echo base_url();?>patients/register">Register</a></li>
         </ul>
       </div>
     </div>
     </nav>
 
     <div class="container">
+
+    <!-- Alerts -->
+    <?php if($this -> session -> flashdata('patient_registered')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_registered') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods -->
