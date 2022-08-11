@@ -35,11 +35,11 @@
 					<li><a href="<?php echo base_url(); ?>">Home</a></li>
 					<li><a href="<?php echo base_url(); ?>about">About</a></li>
 					<li><a href="<?php echo base_url(); ?>contact">Contact Us</a></li>
-                    <li><a href="<?php echo base_url(); ?>appointments">Appointments</a></li>
+          <li><a href="<?php echo base_url(); ?>appointments">Appointments</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
-          <li><a href="<?php echo base_url();?>patients/register">Register</a></li>
+          <li><a href="<?php echo base_url();?>registerprofiles">Register</a></li>
         </ul>
       </div>
     </div>
