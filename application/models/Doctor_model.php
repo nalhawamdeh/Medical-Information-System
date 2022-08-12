@@ -25,4 +25,18 @@
                 return false;
             }
         }
+
+        public function login($email, $password) {
+            $this -> db -> where('doctor_email', $email);
+            $this -> db -> where('password', $password);
+
+            $result = $this -> db -> get('doctor');
+
+            //get doctor id from db
+            if($result -> num_rows() == 1){
+                return $result -> row(0) -> doctor_id;
+            } else {
+                return false;
+            }
+        }
     }
