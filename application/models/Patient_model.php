@@ -23,4 +23,18 @@
                 return false;
             }
         }
+
+        public function login($email, $password) {
+            $this -> db -> where('patient_email', $email);
+            $this -> db -> where('password', $password);
+
+            $result = $this -> db -> get('patient');
+
+            //get patient id from db
+            if($result -> num_rows() == 1){
+                return $result -> row(0) -> patient_id;
+            } else {
+                return false;
+            }
+        }
     }
