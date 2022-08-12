@@ -23,7 +23,7 @@
                 
                 //Message
                 $this -> session -> set_flashdata('doctor_registered','You have successfully registered as a Doctor.');
-                redirect('appointments');
+                redirect('doctors/login');
             }
 
         }
@@ -36,5 +36,56 @@
             } else {
                 return false;
             }
+        }
+
+        public function login() {
+            $data['title'] = 'Login';
+
+            $this -> form_validation ->set_rules('doctor_email', 'Doctor Email', 'required');
+            $this -> form_validation ->set_rules('password', 'Password', 'required');
+           
+
+            if($this -> form_validation -> run() === FALSE){
+                $this -> load -> view('templates/header');
+                $this -> load -> view('doctors/login', $data);
+                $this -> load -> view('templates/footer');
+            } else {        
+                //Get email
+                $email = $this -> input -> post('doctor_email');
+                $password = md5($this-> input -> post('password'));
+                
+                //Login user
+                $d_id = $this -> doctor_model -> login($email, $password);
+
+                if($d_id){
+                    //create the session and alert message
+                    $doctor_data = array(
+                        'd_id' => $d_id,
+                        'email' => $email,
+                        'logged_in' => true
+                    );
+
+                    $this -> session -> set_userdata($doctor_data);
+                    
+                    $this -> session -> set_flashdata('doctor_loggedin','You have logged in successfully.');
+                    redirect('appointments');
+
+                } else {
+                    $this -> session -> set_flashdata('doctor_notloggedin','Login failed.');
+                    redirect('doctors/login');
+                }
+                
+            }
+
+        }
+
+        public function logout() {
+            //unset data
+            $this -> session -> unset_userdata('logged_in');
+            $this -> session -> unset_userdata('d_id');
+            $this -> session -> unset_userdata('email');
+
+            $this -> session -> set_flashdata('docctor_loggedout','You have logged out successfully.');
+            redirect('doctors/login');
         }
     }
