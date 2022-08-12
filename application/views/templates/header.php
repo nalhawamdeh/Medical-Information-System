@@ -47,7 +47,15 @@
           
           <?php if($this->session->userdata('logged_in')): ?>
           <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
+          
+          <?php if(($this->session->userdata('profile')=="patient")):?>
           <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
+          <?php endif;?>
+          
+          <?php if(!($this->session->userdata('profile')=="patient")):?>
+          <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
+          <?php endif;?>
+
           <?php endif;?>
 
         </ul>
@@ -79,11 +87,15 @@
     <?php endif; ?>
 
     <?php if($this -> session -> flashdata('doctor_notloggedin')): ?>
-      <?php echo '<p class="alert alert-danger">' .$this -> session -> flashdata('doctor_loggedin') . '</p>'; ?>   
+      <?php echo '<p class="alert alert-danger">' .$this -> session -> flashdata('doctor_notloggedin') . '</p>'; ?>   
     <?php endif; ?>
 
     <?php if($this -> session -> flashdata('doctor_loggedout')): ?>
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_loggedout') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('doctor_registered')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_registered') . '</p>'; ?>   
     <?php endif; ?>
 
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
