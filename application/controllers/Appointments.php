@@ -33,8 +33,7 @@
         public function book() {
             //check login
             if(!$this-> session -> userdata('logged_in')){
-                //when doctors added take to main log in
-                redirect('patients/login');
+                redirect('appointments');
             }
             
             $data['title'] = 'Book an Appointment with your Doctor';
