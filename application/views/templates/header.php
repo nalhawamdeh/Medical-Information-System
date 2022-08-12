@@ -22,7 +22,6 @@
     })
     </script>
     
-    
 
     <body>
     <nav class="navbar navbar-inverse">
@@ -35,11 +34,22 @@
 					<li><a href="<?php echo base_url(); ?>">Home</a></li>
 					<li><a href="<?php echo base_url(); ?>about">About</a></li>
 					<li><a href="<?php echo base_url(); ?>contact">Contact Us</a></li>
+          <?php if($this->session->userdata('logged_in')): ?>
           <li><a href="<?php echo base_url(); ?>appointments">Appointments</a></li>
+          <?php endif;?>
         </ul>
+
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
+          <?php if(!$this->session->userdata('logged_in')): ?>
+          <li><a href="<?php echo base_url();?>patients/login">Login</a></li>
           <li><a href="<?php echo base_url();?>registerprofiles">Register</a></li>
+          <?php endif;?>
+          
+          <?php if($this->session->userdata('logged_in')): ?>
+          <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
+          <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
+          <?php endif;?>
+
         </ul>
       </div>
     </div>
@@ -52,4 +62,16 @@
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_registered') . '</p>'; ?>   
     <?php endif; ?>
 
-    <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods -->
+    <?php if($this -> session -> flashdata('patient_notloggedin')): ?>
+      <?php echo '<p class="alert alert-danger">' .$this -> session -> flashdata('patient_notloggedin') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('patient_loggedin')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_loggedin') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('patient_loggedout')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_loggedout') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
