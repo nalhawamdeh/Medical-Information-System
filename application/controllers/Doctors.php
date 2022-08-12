@@ -23,7 +23,7 @@
                 
                 //Message
                 $this -> session -> set_flashdata('doctor_registered','You have successfully registered as a Doctor.');
-                redirect('doctors/login');
+                redirect('home');
             }
 
         }
@@ -53,7 +53,8 @@
                 //Get email
                 $email = $this -> input -> post('doctor_email');
                 $password = md5($this-> input -> post('password'));
-                
+                $profile = "doctor";
+
                 //Login user
                 $d_id = $this -> doctor_model -> login($email, $password);
 
@@ -62,13 +63,14 @@
                     $doctor_data = array(
                         'd_id' => $d_id,
                         'email' => $email,
-                        'logged_in' => true
+                        'logged_in' => true,
+                        'profile' => $profile
                     );
 
                     $this -> session -> set_userdata($doctor_data);
                     
-                    $this -> session -> set_flashdata('doctor_loggedin','You have logged in successfully.');
-                    redirect('appointments');
+                    $this -> session -> set_flashdata('doctor_loggedin','You have logged in successfully as a Doctor.');
+                    redirect('home');
 
                 } else {
                     $this -> session -> set_flashdata('doctor_notloggedin','Login failed.');
@@ -84,8 +86,9 @@
             $this -> session -> unset_userdata('logged_in');
             $this -> session -> unset_userdata('d_id');
             $this -> session -> unset_userdata('email');
+            $this -> session -> unset_userdata('profile');
 
-            $this -> session -> set_flashdata('docctor_loggedout','You have logged out successfully.');
-            redirect('doctors/login');
+            $this -> session -> set_flashdata('doctor_loggedout','You have logged out successfully as a Doctor.');
+            redirect('home');
         }
     }

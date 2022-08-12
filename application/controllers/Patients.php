@@ -21,7 +21,7 @@
                 
                 //Message
                 $this -> session -> set_flashdata('patient_registered','You have successfully registered as a Patient.');
-                redirect('patients/login');
+                redirect('home');
             }
 
         }
@@ -52,6 +52,7 @@
                 //Get email
                 $email = $this -> input -> post('patient_email');
                 $password = md5($this-> input -> post('password'));
+                $profile = "patient";
                 
                 //Login user
                 $p_id = $this -> patient_model -> login($email, $password);
@@ -61,12 +62,13 @@
                     $patient_data = array(
                         'p_id' => $p_id,
                         'email' => $email,
-                        'logged_in' => true
+                        'logged_in' => true,
+                        'profile' => $profile
                     );
 
                     $this -> session -> set_userdata($patient_data);
                     
-                    $this -> session -> set_flashdata('patient_loggedin','You have logged in successfully.');
+                    $this -> session -> set_flashdata('patient_loggedin','You have logged in successfully as a Patient.');
                     redirect('appointments');
 
                 } else {
@@ -83,9 +85,10 @@
             $this -> session -> unset_userdata('logged_in');
             $this -> session -> unset_userdata('p_id');
             $this -> session -> unset_userdata('email');
+            $this -> session -> unset_userdata('profile');
 
-            $this -> session -> set_flashdata('patient_loggedout','You have logged out successfully.');
-            redirect('patients/login');
+            $this -> session -> set_flashdata('patient_loggedout','You have logged out successfully as a Patient.');
+            redirect('home');
         }
 
     }
