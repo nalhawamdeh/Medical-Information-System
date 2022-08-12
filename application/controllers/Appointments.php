@@ -1,6 +1,7 @@
 <?php
     class Appointments extends CI_Controller {
         public function index() {
+
             #display page title 
             $data['title'] = 'Appointments';
 
@@ -14,6 +15,7 @@
         }
 
         public function view($slug = NULL) {
+        
             $data['appointment'] = $this -> appointment_model -> get_appointments($slug);
 
             if(empty($data['appointment'])){
@@ -29,7 +31,14 @@
         }
 
         public function book() {
+            //check login
+            if(!$this-> session -> userdata('logged_in')){
+                //when doctors added take to main log in
+                redirect('patients/login');
+            }
+            
             $data['title'] = 'Book an Appointment with your Doctor';
+
 
             $this -> form_validation -> set_rules('date','Date', 'required');
             $this -> form_validation -> set_rules('time','Time', 'required');
@@ -72,6 +81,7 @@
         }
 
         public function update() {
+
             $this -> appointment_model -> update();
             redirect('appointments');
         }
