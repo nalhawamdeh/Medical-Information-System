@@ -21,7 +21,7 @@
                 
                 //Message
                 $this -> session -> set_flashdata('patient_registered','You have successfully registered as a Patient.');
-                redirect('appointments');
+                redirect('patients/login');
             }
 
         }
