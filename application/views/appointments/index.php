@@ -7,7 +7,7 @@
         <p> Patient ID: <?php echo $appointment['patient_id'];?> </p>
         <p> Doctor ID: <?php echo $appointment['doctor_id'];?> </p>
         
-    <?php if($this->session->userdata('email') == $appointment['patient_email']): ?>
+    <?php if($this->session->userdata('email') == $appointment['patient_email'] || $this->session->userdata('email') == $appointment['doctor_email']): ?>
         <br>
         <p> <a class="btn btn-info" href="<?php echo site_url('/appointments/' .$appointment['slug']); ?>">View Details</a></p>
     <?php endif;?>
