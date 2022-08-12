@@ -41,7 +41,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <?php if(!$this->session->userdata('logged_in')): ?>
-          <li><a href="<?php echo base_url();?>patients/login">Login</a></li>
+          <li><a href="<?php echo base_url();?>loginprofiles">Login</a></li>
           <li><a href="<?php echo base_url();?>registerprofiles">Register</a></li>
           <?php endif;?>
           
@@ -72,6 +72,18 @@
 
     <?php if($this -> session -> flashdata('patient_loggedout')): ?>
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_loggedout') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('doctor_loggedin')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_loggedin') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('doctor_notloggedin')): ?>
+      <?php echo '<p class="alert alert-danger">' .$this -> session -> flashdata('doctor_loggedin') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('doctor_loggedout')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_loggedout') . '</p>'; ?>   
     <?php endif; ?>
 
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
