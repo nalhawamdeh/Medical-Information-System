@@ -20,7 +20,7 @@
                 $this -> patient_model -> register($enc);
                 
                 //Message
-                $this -> session -> set_flashdata('patient_registered','You have successfully registered as a Patient.');
+                $this -> session -> set_flashdata('patient_registered','Patient registration successful.');
                 redirect('home');
             }
 
@@ -68,11 +68,11 @@
 
                     $this -> session -> set_userdata($patient_data);
                     
-                    $this -> session -> set_flashdata('patient_loggedin','You have logged in successfully as a Patient.');
+                    $this -> session -> set_flashdata('patient_loggedin','Patient login successful.');
                     redirect('appointments');
 
                 } else {
-                    $this -> session -> set_flashdata('patient_notloggedin','Login failed.');
+                    $this -> session -> set_flashdata('patient_notloggedin','Patient login failed.');
                     redirect('patients/login');
                 }
                 
@@ -87,8 +87,48 @@
             $this -> session -> unset_userdata('email');
             $this -> session -> unset_userdata('profile');
 
-            $this -> session -> set_flashdata('patient_loggedout','You have logged out successfully as a Patient.');
+            $this -> session -> set_flashdata('patient_loggedout','Patient logout successful.');
             redirect('home');
+        }
+
+        public function viewprofile() {
+            $data['title'] = 'Your Profile';
+            $email = $this -> session -> userdata('email');
+
+            //$p = $this -> patient_model -> get_patient($email);
+            $data['patient'] = $this -> patient_model -> get_patient($email);
+
+            if(empty($data['patient'])){
+                die('empty');
+            } else {
+                $this -> load -> view('templates/header');
+                $this -> load -> view('patients/viewprofile', $data);
+                $this -> load -> view('templates/footer'); 
+            }
+        }
+
+        public function editprofile(){
+            $data['title'] = 'Edit Your Profile';
+            $email = $this -> session -> userdata('email');
+            $data['patient'] = $this -> patient_model -> get_patient($email);
+
+            if(empty($data['patient'])){
+                die('empty edit');
+            }
+
+            $this -> load -> view('templates/header');
+            $this -> load -> view('patients/editprofile', $data);
+            $this -> load -> view('templates/footer'); 
+        }
+
+        public function update() {
+            $this -> patient_model -> edit();
+            
+            
+            //Message
+            $this -> session -> set_flashdata('patient_updateprofile','You have successfully edited your patient profile.');
+
+            redirect('patients/viewprofile');
         }
 
     }
