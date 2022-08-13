@@ -56,7 +56,7 @@
                 'time' => $this->input->post('time'),
                 'patient_id' => $this->input->post('patient_id'),
                 'patient_surname' => $this->input->post('patient_surname'),
-                'patient_email' => $this-> session -> userdata('email'),
+                'patient_email' => $this-> input->post('patient_email'),
                 'doctor_id' => $this->input->post('doctor_id'),
                 'doctor_surname' => $this->input->post('doctor_surname'),
                 'doctor_email' => $this->input->post('doctor_email')
