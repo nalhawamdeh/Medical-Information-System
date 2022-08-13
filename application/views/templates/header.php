@@ -49,10 +49,11 @@
           <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
           
           <?php if(($this->session->userdata('profile')=="patient")):?>
+          <li><a href="<?php echo base_url();?>patients/viewprofile">My Profile</a></li>
           <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
           <?php endif;?>
           
-          <?php if(!($this->session->userdata('profile')=="patient")):?>
+          <?php if(($this->session->userdata('profile')=="doctor")):?>
           <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
           <?php endif;?>
 
@@ -98,4 +99,9 @@
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_registered') . '</p>'; ?>   
     <?php endif; ?>
 
+    <?php if($this -> session -> flashdata('patient_updateprofile')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_updateprofile') . '</p>'; ?>   
+    <?php endif; ?>
+
+    
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
