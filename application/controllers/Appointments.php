@@ -36,7 +36,7 @@
                 redirect('appointments');
             }
             
-            $data['title'] = 'Book an Appointment with your Doctor';
+            $data['title'] = 'Book an Appointment';
 
 
             $this -> form_validation -> set_rules('date','Date', 'required');
