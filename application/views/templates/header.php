@@ -54,6 +54,7 @@
           <?php endif;?>
           
           <?php if(($this->session->userdata('profile')=="doctor")):?>
+          <li><a href="<?php echo base_url();?>doctors/viewprofile">My Profile</a></li>
           <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
           <?php endif;?>
 
@@ -103,5 +104,7 @@
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('patient_updateprofile') . '</p>'; ?>   
     <?php endif; ?>
 
-    
+    <?php if($this -> session -> flashdata('doctor_updateprofile')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_updateprofile') . '</p>'; ?>   
+    <?php endif; ?>
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
