@@ -22,7 +22,7 @@
                 $this -> doctor_model -> register($enc);
                 
                 //Message
-                $this -> session -> set_flashdata('doctor_registered','You have successfully registered as a Doctor.');
+                $this -> session -> set_flashdata('doctor_registered','Doctor registration successful.');
                 redirect('home');
             }
 
@@ -69,11 +69,11 @@
 
                     $this -> session -> set_userdata($doctor_data);
                     
-                    $this -> session -> set_flashdata('doctor_loggedin','You have logged in successfully as a Doctor.');
+                    $this -> session -> set_flashdata('doctor_loggedin','Doctor login successful.');
                     redirect('home');
 
                 } else {
-                    $this -> session -> set_flashdata('doctor_notloggedin','Login failed.');
+                    $this -> session -> set_flashdata('doctor_notloggedin','Doctor login failed.');
                     redirect('doctors/login');
                 }
                 
@@ -88,7 +88,47 @@
             $this -> session -> unset_userdata('email');
             $this -> session -> unset_userdata('profile');
 
-            $this -> session -> set_flashdata('doctor_loggedout','You have logged out successfully as a Doctor.');
+            $this -> session -> set_flashdata('doctor_loggedout','Doctor logout successful.');
             redirect('home');
+        }
+
+        public function viewprofile() {
+            $data['title'] = 'Your Profile';
+            $email = $this -> session -> userdata('email');
+
+            //$p = $this -> patient_model -> get_patient($email);
+            $data['doctor'] = $this -> doctor_model -> get_doctor($email);
+
+            if(empty($data['doctor'])){
+                die('empty');
+            } else {
+                $this -> load -> view('templates/header');
+                $this -> load -> view('doctors/viewprofile', $data);
+                $this -> load -> view('templates/footer'); 
+            }
+        }
+
+        public function editprofile(){
+            $data['title'] = 'Edit Your Profile';
+            $email = $this -> session -> userdata('email');
+            $data['doctor'] = $this -> doctor_model -> get_doctor($email);
+
+            if(empty($data['doctor'])){
+                die('empty edit');
+            }
+
+            $this -> load -> view('templates/header');
+            $this -> load -> view('doctors/editprofile', $data);
+            $this -> load -> view('templates/footer'); 
+        }
+
+        public function update() {
+            $this -> doctor_model -> edit();
+            
+            
+            //Message
+            $this -> session -> set_flashdata('doctor_updateprofile','You have successfully edited your doctor profile.');
+
+            redirect('doctors/viewprofile');
         }
     }
