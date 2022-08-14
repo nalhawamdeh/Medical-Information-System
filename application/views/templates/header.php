@@ -46,14 +46,16 @@
           <?php endif;?>
           
           <?php if($this->session->userdata('logged_in')): ?>
-          <li><a href="<?php echo base_url();?>appointments/book">Book Appointment</a></li>
           
           <?php if(($this->session->userdata('profile')=="patient")):?>
+
+          <li><a href="<?php echo site_url();?>histories/patientview">My Medical History</a></li>
           <li><a href="<?php echo base_url();?>patients/viewprofile">My Profile</a></li>
           <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
           <?php endif;?>
           
           <?php if(($this->session->userdata('profile')=="doctor")):?>
+          <li><a href="<?php echo base_url();?>histories">Medical Histories</a></li>
           <li><a href="<?php echo base_url();?>doctors/viewprofile">My Profile</a></li>
           <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
           <?php endif;?>
@@ -107,4 +109,29 @@
     <?php if($this -> session -> flashdata('doctor_updateprofile')): ?>
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_updateprofile') . '</p>'; ?>   
     <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('history_created')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('history_created') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('history_deleted')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('history_deleted') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('history_updated')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('history_updated') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('appointment_updated')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('appointment_updated') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('appointment_deleted')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('appointment_deleted') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('appointment_booked')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('appointment_booked') . '</p>'; ?>   
+    <?php endif; ?>
+
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
