@@ -1,5 +1,7 @@
 <div class="appointment-div">
     <h2> Patient ID: <?php echo $history['patient_id']; ?></h2>
+    <h2> Patient Surname: <?php echo $history['patient_surname']; ?></h2>
+    
     <hr class="hr-dark">
         <p> Illness: <?php echo $history['illness'];?> </p>
         <p> Weight: <?php echo $history['weight'];?> </p>
