@@ -58,6 +58,11 @@ $route['histories/update'] = 'histories/update';
 $route['histories/(:any)'] = 'histories/view/$1';
 $route['histories'] = 'histories/index';
 
+$route['prescriptions/patientview'] = 'prescriptions/patientview';
+$route['prescriptions/create'] = 'prescriptions/create';
+$route['prescriptions/update'] = 'prescriptions/update';
+$route['prescriptions/(:any)'] = 'prescriptions/view/$1';
+$route['prescriptions'] = 'prescriptions/index';
 
 $route['appointments/book'] = 'appointments/book';
 $route['appointments/update'] = 'appointments/update';
