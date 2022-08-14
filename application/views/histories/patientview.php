@@ -19,6 +19,6 @@
             <p> Birthday: <?php echo $history['birthday'];?> </p>
         
         </div>
-    <br><br>
+    <br>
     <?php endif;?>
 <?php endforeach;?>
