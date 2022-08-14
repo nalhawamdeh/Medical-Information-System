@@ -20,7 +20,10 @@
 
         public function book() {
             #create slug before entering into database
-            $slug = url_title($this->input->post('patient_email'));
+            $email = $this->input->post('patient_email');
+            $date = $this->input->post('date');
+            $time = $this->input->post('time');
+            $slug = url_title($email . $date . $time);
 
             #data coming from form
             $data = array(
@@ -46,8 +49,11 @@
         }
 
         public function update(){
-             #create slug before entering into database
-             $slug = url_title($this->input->post('patient_email'));
+            #create slug before entering into database
+            $email = $this->input->post('patient_email');
+            $date = $this->input->post('date');
+            $time = $this->input->post('time');
+            $slug = url_title($email . $date . $time);
 
             #data coming from form
             $data = array(
