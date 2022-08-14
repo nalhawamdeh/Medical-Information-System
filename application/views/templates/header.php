@@ -31,11 +31,22 @@
 				</div>
 			<div id="navbar">
 				<ul class="nav navbar-nav">
-					<li><a href="<?php echo base_url(); ?>">Home</a></li>
-					<li><a href="<?php echo base_url(); ?>about">About</a></li>
-					<li><a href="<?php echo base_url(); ?>contact">Contact Us</a></li>
+					  <li><a href="<?php echo base_url(); ?>">Home</a></li>
+					<!--<li><a href="<\\?php echo base_url(); ?>about">About</a></li>-->
+					<!--<li><a href="<\\?php echo base_url(); ?>contact">Contact</a></li>-->
           <?php if($this->session->userdata('logged_in')): ?>
-          <li><a href="<?php echo base_url(); ?>appointments">Appointments</a></li>
+            
+            <li><a href="<?php echo base_url(); ?>appointments">Appointments</a></li>
+
+            <?php if(($this->session->userdata('profile')=="patient")):?>
+              <li><a href="<?php echo site_url();?>prescriptions/patientview">My Prescriptions</a></li>
+              <li><a href="<?php echo site_url();?>histories/patientview">My Medical History</a></li>
+            <?php endif;?>
+          
+            <?php if(($this->session->userdata('profile')=="doctor")):?>
+              <li><a href="<?php echo base_url();?>prescriptions">Prescriptions</a></li>
+              <li><a href="<?php echo base_url();?>histories">Medical Histories</a></li>
+            <?php endif;?>
           <?php endif;?>
         </ul>
 
@@ -44,22 +55,16 @@
           <li><a href="<?php echo base_url();?>loginprofiles">Login</a></li>
           <li><a href="<?php echo base_url();?>registerprofiles">Register</a></li>
           <?php endif;?>
-          
+
           <?php if($this->session->userdata('logged_in')): ?>
-          
-          <?php if(($this->session->userdata('profile')=="patient")):?>
-
-          <li><a href="<?php echo site_url();?>histories/patientview">My Medical History</a></li>
-          <li><a href="<?php echo base_url();?>patients/viewprofile">My Profile</a></li>
-          <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
-          <?php endif;?>
-          
-          <?php if(($this->session->userdata('profile')=="doctor")):?>
-          <li><a href="<?php echo base_url();?>histories">Medical Histories</a></li>
-          <li><a href="<?php echo base_url();?>doctors/viewprofile">My Profile</a></li>
-          <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
-          <?php endif;?>
-
+            <?php if(($this->session->userdata('profile')=="doctor")):?>
+              <li><a href="<?php echo base_url();?>doctors/viewprofile">My Profile</a></li>
+              <li><a href="<?php echo base_url();?>doctors/logout">Logout</a></li>
+            <?php endif;?>
+            <?php if(($this->session->userdata('profile')=="patient")):?>
+              <li><a href="<?php echo base_url();?>patients/viewprofile">My Profile</a></li>
+              <li><a href="<?php echo base_url();?>patients/logout">Logout</a></li>
+            <?php endif;?>
           <?php endif;?>
 
         </ul>
@@ -134,4 +139,15 @@
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('appointment_booked') . '</p>'; ?>   
     <?php endif; ?>
 
+    <?php if($this -> session -> flashdata('prescription_created')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('prescription_created') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('prescription_updated')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('prescription_updated') . '</p>'; ?>   
+    <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('prescription_deleted')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('prescription_deleted') . '</p>'; ?>   
+    <?php endif; ?>
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->
