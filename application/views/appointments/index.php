@@ -1,5 +1,8 @@
 <h2 class="text-primary page-title"> <?= $title?> </h2>
-<br>
+<div>
+<a class="btn btn-info pull-right" href="<?php echo base_url();?>appointments/book">Book Appointment</a>
+</div>
+<br><br><br>
 <?php foreach($appointments as $appointment) :?>
     <?php if($this->session->userdata('email') == $appointment['patient_email'] || $this->session->userdata('email') == $appointment['doctor_email']): ?>
         <div class="appointment-div">
