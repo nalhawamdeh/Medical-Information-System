@@ -4,7 +4,7 @@
 </div>
 <br><br><br>
 <?php foreach($histories as $history) :?>
-    <?php if($this->session->userdata('email') == $history['doctor_email'] || $this->session->userdata('email') == $history['patient_email'] ): ?>
+    <?php if($this->session->userdata('email') == $history['doctor_email']): ?>
         <div class="appointment-div">
             <h3> Patient ID: <?php echo $history['patient_id']; ?></h3>
             <h3> Patient Surname: <?php echo $history['patient_surname'];?> </h3>
