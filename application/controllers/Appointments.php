@@ -54,6 +54,7 @@
                 $this -> load -> view('templates/footer');
             } else {
                 $this -> appointment_model -> book();
+                $this -> session -> set_flashdata('appointment_booked','Appointment booked successfully.');
                 redirect('appointments');
             }
         }
@@ -61,6 +62,7 @@
         public function delete($appointment_id) {
             #call function from model
             $this -> appointment_model -> delete($appointment_id);
+            $this -> session -> set_flashdata('appointment_deleted','Appointment deleted successfully.');
             redirect('appointments');
         }
 
@@ -82,6 +84,7 @@
         public function update() {
 
             $this -> appointment_model -> update();
+            $this -> session -> set_flashdata('appointment_updated','Appointment updated successfully.');
             redirect('appointments');
         }
     }
