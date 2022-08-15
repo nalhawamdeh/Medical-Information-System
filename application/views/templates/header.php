@@ -46,6 +46,7 @@
             <?php if(($this->session->userdata('profile')=="doctor")):?>
               <li><a href="<?php echo base_url();?>prescriptions">Prescriptions</a></li>
               <li><a href="<?php echo base_url();?>histories">Medical Histories</a></li>
+              <li><a href="<?php echo base_url();?>doctors/vieworg">My Organization</a></li>
             <?php endif;?>
           <?php endif;?>
         </ul>
@@ -150,4 +151,12 @@
     <?php if($this -> session -> flashdata('prescription_deleted')): ?>
       <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('prescription_deleted') . '</p>'; ?>   
     <?php endif; ?>
+
+    <?php if($this -> session -> flashdata('doctor_updateorg')): ?>
+      <?php echo '<p class="alert alert-success">' .$this -> session -> flashdata('doctor_updateorg') . '</p>'; ?>   
+    <?php endif; ?>
+
+    
+
+
     <!-- Add alerts for book appointment and change appointment in controllers create edit delete update methods also for doctors -->

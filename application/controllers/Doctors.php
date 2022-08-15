@@ -131,4 +131,48 @@
 
             redirect('doctors/viewprofile');
         }
+
+        public function vieworg() {
+            $data['title'] = 'Your Organization';
+            $email = $this -> session -> userdata('email');
+
+            
+            $data['doctor'] = $this -> doctor_model -> get_doctor($email);
+            $org = $data['doctor']['org_id'];
+        
+            $data['org'] = $this -> doctor_model -> get_org($org);
+
+            if(empty($data['org'])){
+                die('empty');
+            } else {
+                $this -> load -> view('templates/header');
+                $this -> load -> view('doctors/vieworg', $data);
+                $this -> load -> view('templates/footer'); 
+            }
+        }
+
+        public function editorg(){
+            $data['title'] = 'Edit Your Organization Details';
+            $email = $this -> session -> userdata('email');
+            $data['doctor'] = $this -> doctor_model -> get_doctor($email);
+            $org = $data['doctor']['org_id'];
+            $data['org'] = $this -> doctor_model -> get_org($org);
+            
+            if(empty($data['org'])){
+                die('empty edit org');
+            }
+
+            $this -> load -> view('templates/header');
+            $this -> load -> view('doctors/editorg', $data);
+            $this -> load -> view('templates/footer'); 
+        }
+
+        public function updateorg() {
+            $this -> doctor_model -> editorg();
+            
+            //Message
+            $this -> session -> set_flashdata('doctor_updateorg','You have successfully updated your organizations details.');
+            redirect('doctors/vieworg');
+        }
+
     }

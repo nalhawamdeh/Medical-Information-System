@@ -46,6 +46,11 @@
 
         }
 
+        public function get_org($org) {
+            $query = $this -> db -> get_where('organization', array('org_id' => $org)); 
+            return $query -> row_array();
+        }
+
         public function edit() {
             $data = array(
                 'doctor_forename' => $this -> input -> post('doctor_forename'),
@@ -65,6 +70,21 @@
             $this -> session -> set_userdata($doctor_data);
             $this -> db -> where('doctor_id', $this -> input -> post('doctor_id'));
             return $this -> db -> update('doctor', $data);
+
+        }
+
+        public function editorg() {
+            $data = array(
+                'org_id' => $this -> input -> post('org_id'),
+                'org_name' => $this->input->post('org_name'),
+                'building' => $this-> input -> post('building'),
+                'street' => $this -> input -> post('street'),
+                'city' => $this -> input -> post('city'),
+                'country' => $this -> input -> post('country')
+            );
+
+            $this -> db -> where('org_id', $this -> input -> post('org_id'));
+            return $this -> db -> update('organization', $data);
 
         }
     }
